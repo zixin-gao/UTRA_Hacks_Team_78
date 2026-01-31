@@ -1,7 +1,9 @@
-#include <Arduino.h>
+void setup() {
+  Serial.begin(9600);
+}
 
-int leftVal = analogRead(A0);
-int rightVal = analogRead(A1);
-
-Serial.println(leftVal);
-Serial.println(rightVal);
+void loop() {
+  int val = analogRead(A0);
+  Serial.println(val);
+  delay(200);
+}
