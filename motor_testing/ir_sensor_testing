@@ -1,0 +1,7 @@
+#include <Arduino.h>
+
+int leftVal = analogRead(A0);
+int rightVal = analogRead(A1);
+
+Serial.println(leftVal);
+Serial.println(rightVal);
