@@ -1,11 +1,13 @@
 #include <Arduino.h>
-
+int output = A0;
 void setup() {
   Serial.begin(9600);
+   pinMode(A0, INPUT);
+  
 }
 
 void loop() {
-  int val = analogRead(A0);
+  int val = digitalRead(A0);
   Serial.println(val);
   delay(200);
-}git status
+}
