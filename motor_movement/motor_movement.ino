@@ -7,8 +7,25 @@ int rightIR = A1;
 // Threshold (calculated from your data)
 int threshold = 501;
 
+int enA = 10;
+int in1 = 9;
+int in2 = 8;
+
+int enB = 5;
+int in3 = 7;
+int in4 = 6;
+
+int full_speed = 150;
+int turn_speed = 10;
+
 void setup() {
   Serial.begin(9600);
+  pinMode(enA, OUTPUT);
+  pinMode(in1, OUTPUT);
+  pinMode(in2, OUTPUT);
+  pinMode(enB, OUTPUT);
+  pinMode(in3, OUTPUT);
+  pinMode(in4, OUTPUT);
 
   analogWrite(enA, 0);
   analogWrite(enB, 0);
@@ -25,17 +42,17 @@ void loop() {
   int leftValue  = analogRead(leftIR);
   int rightValue = analogRead(rightIR);
 
-  bool leftBlack  = (leftValue  < threshold);
-  bool rightBlack = (rightValue < threshold);
+  bool leftWhite  = (leftValue  < threshold);
+  bool rightWhite = (rightValue < threshold);
 
-  if (!leftBlack && !rightBlack) {
+  if (leftWhite && rightWhite) {
     moveForward();
   }
-  else if (leftBlack && !rightBlack) {
-    turnLeft();
-  }
-  else if (!leftBlack && rightBlack) {
+  else if (leftWhite && !rightWhite) {
     turnRight();
+  }
+  else if (!leftWhite && rightWhite) {
+    turnLeft();
   }
   else {
     stopMotors();
@@ -45,8 +62,8 @@ void loop() {
 // ---------- MOTOR FUNCTIONS BELOW ----------
 
 void moveForward() {
-analogWrite(enA, 200);   // speed (0–255)
-  analogWrite(enB, 200);
+  analogWrite(enA, full_speed);   // speed (0–255)
+  analogWrite(enB, full_speed);
 
   digitalWrite(in1, HIGH);
   digitalWrite(in2, LOW);
@@ -57,8 +74,8 @@ analogWrite(enA, 200);   // speed (0–255)
 
 
 void turnLeft() {
-  analogWrite(enA, 150);   // left motor slower
-  analogWrite(enB, 200);   // right motor faster
+  analogWrite(enB, turn_speed);   // left motor slower
+  analogWrite(enA, full_speed);   // right motor faster
 
   digitalWrite(in1, HIGH);
   digitalWrite(in2, LOW);
@@ -68,8 +85,8 @@ void turnLeft() {
 }
 
 void turnRight() {
-  analogWrite(enA, 200);   // left motor faster
-  analogWrite(enB, 150);   // right motor slower
+  analogWrite(enB, full_speed);   // left motor faster
+  analogWrite(enA, turn_speed);   // right motor slower
 
   digitalWrite(in1, HIGH);
   digitalWrite(in2, LOW);

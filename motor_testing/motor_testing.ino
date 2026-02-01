@@ -21,9 +21,7 @@ void setup() {
     digitalWrite(in2, LOW);
     digitalWrite(in3, LOW);
     digitalWrite(in4, LOW);
-}
 
-void loop(){
     analogWrite(enA, 255); // Set motor A speed to maximum
     digitalWrite(in1, HIGH); // Set motor A direction forward
     digitalWrite(in2, LOW);
@@ -31,4 +29,17 @@ void loop(){
     analogWrite(enB, 255); // Set motor B speed to maximum
     digitalWrite(in3, HIGH); // Set motor B direction forward
     digitalWrite(in4, LOW);
+    delay(10000); // Run motors for 2 seconds
+
+}
+
+void loop(){
+    // analogWrite(enA, 255); // Set motor A speed to maximum
+    // digitalWrite(in1, HIGH); // Set motor A direction forward
+    // digitalWrite(in2, LOW);
+    
+    // analogWrite(enB, 255); // Set motor B speed to maximum
+    // digitalWrite(in3, HIGH); // Set motor B direction forward
+    // digitalWrite(in4, LOW);
+    // delay(10000); // Run motors for 2 seconds
 }
